@@ -6,7 +6,7 @@ Our project is 'Library Management System'. This system can be used in libraries
 
 * Gonuguntla Harikrishna (Analyze, Design, Code)
 * Parashuram Singaraveni (Front-end design, code)
-* Member 3 (Role 5, Role 6)
+* Saikiran Meradikonda (Back-end developer, Code)
 
 ## Prerequisites
 
