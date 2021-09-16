@@ -5,7 +5,7 @@ Our project is 'Library Management System'. This system can be used in libraries
 ## Team Members and Roles
 
 * Gonuguntla Harikrishna (Analyze, Design, Code)
-* Member 2 (Role 3, Role 4)
+* Parashuram Singaraveni 2 (front end design, code)
 * Member 3 (Role 5, Role 6)
 
 ## Prerequisites
