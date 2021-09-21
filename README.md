@@ -7,7 +7,7 @@ Our project is 'Library Management System'. This system can be used in libraries
 * Gonuguntla Harikrishna (Analyze, Design, Code)
 * Parashuram Singaraveni (Front-end design, code)
 * Saikiran Meradikonda (Back-end developer, Code)
-* Naveen Kumar Lalam (Analyze, Design, Code)
+* Naveen Kumar Lalam (Analyze, Design, Code)   
 
 ## Prerequisites
 
