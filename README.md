@@ -4,10 +4,7 @@ Our project is 'Library Management System'. This system can be used in libraries
 
 ## Team Members and Roles
 
-* Gonuguntla Harikrishna (Analyze, Design, Code)
-* Parashuram Singaraveni (Front-end design, code)
-* Saikiran Meradikonda (Back-end developer, Code)
-* Naveen Kumar Lalam (Analyze, Design, Code)   
+* Gonuguntla Harikrishna (Analyze, Design, Code, Test, Document) 
 
 ## Prerequisites
 
