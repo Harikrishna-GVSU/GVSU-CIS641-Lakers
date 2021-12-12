@@ -87,3 +87,22 @@ This section contains the software requirements of the Library Management System
 | NFR23 | The interface must be user-friendly.
 | NFR24 | Users must be able to trace the failure by looking into the log file.
 | NFR25 | The application must contain a message bar to show information or errors regarding the application.
+
+# Change management plan
+This section describes how a change in the Library Management System is managed. A change can be any introduction to the existing project that may affect the existing functionality. The change was introduced to improve the way in which the work is done.
+## Introduction
+It is a well-known fact that change is inevitable. A change can be driven by internal factors, external factors, or both. A change is implemented to make a process better and fix existing problems in a project. Change management involves applying a well-designed process and tools to people who are involved in that change. The people can be developers, testers, server teams, networking teams, etc.
+## Creating Goal
+Building a change management plan will start by establishing the goals of the plan. Understanding the changes is very important in defining the goals of a change. This not only includes giving software to employees and explaining how it works, but also how this change is going to impact the existing process.
+## Change team establishment
+People and resources are required to execute any change plan. In this process, we need to get the support of stakeholders of the product for the plan, and this increases the chance of success of the plan. Subject matter experts, managers, and team lead positions need to be established in order to support, divide work, and manage the work load of members of the team.
+## Developing the plan
+In product development, we need to fill the product backlog with a set of tasks and assign them a priority. We need to develop a timeline and meet the goals for each timeline. These can also be called deadlines. We can use project management tools such as JIRA, ALM in Azure Devops, etc. to track the progress of the plan.
+## Deployment
+The developed code will be tested in all possible ways, and after the testing and fixing bugs, the code will be deployed into production. This process can also be called code migration, which is done when an application is ready for release.
+## Training
+For training, the end-user specific documentation will be created from the end-user perspective, creating the steps that need to be followed. The end-user documentation will contain all the features of the application and the steps to follow to utilise the features. A dedicated resource will be placed to help the end users undergo the training. The support team will be there when the end users need any assistance or any customizations to the project. The support team will be trained in all the aspects necessary to provide customizations to the end user.
+## Ecosystem Integration
+There are many options to make sure that the change integrates with the customer's ecosystem. We can create teams that include both change management and project management practitioners. These people need to have open communication there by pushing forward with integration. Provide opportunities that are specific and concrete for integration. Gaining fundamental knowledge is key, along with knowledge of the company's internal project management process.
+## How to ensure that issues discovered are fixed?
+The only way to ensure the issues discovered are fixed is by testing the product. Unit testing needs to be done and any issues need to be fixed. Then comes integration testing. In integration testing, we will test all the related modules together. After integration testing, system testing needs to be performed. Regression testing will be performed to check if the new change impacts the existing process. User acceptance testing will be performed to determine whether the goals were met from the perspective of the end user.
