@@ -106,3 +106,10 @@ For training, the end-user specific documentation will be created from the end-u
 There are many options to make sure that the change integrates with the customer's ecosystem. We can create teams that include both change management and project management practitioners. These people need to have open communication there by pushing forward with integration. Provide opportunities that are specific and concrete for integration. Gaining fundamental knowledge is key, along with knowledge of the company's internal project management process.
 ## How to ensure that issues discovered are fixed?
 The only way to ensure the issues discovered are fixed is by testing the product. Unit testing needs to be done and any issues need to be fixed. Then comes integration testing. In integration testing, we will test all the related modules together. After integration testing, system testing needs to be performed. Regression testing will be performed to check if the new change impacts the existing process. User acceptance testing will be performed to determine whether the goals were met from the perspective of the end user.
+# Traceability links
+This section identifies the relation between the requirements and the artifacts of a software product. Artifacts include documents, usecases, actors, and functionalites of the product.
+## Use Case Diagram Traceability
+| Artifact ID | Artifact Name | Requirement ID |
+| :-------------: | :----------: | :----------: |
+| UseCase1 | Move Player | FR5 |
+
