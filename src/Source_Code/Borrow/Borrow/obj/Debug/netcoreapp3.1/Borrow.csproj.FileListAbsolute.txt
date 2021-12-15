@@ -4,7 +4,6 @@ C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\Borrow.runtimeconfig.dev.json
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\Borrow.dll
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\Borrow.pdb
-C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\obj\Debug\netcoreapp3.1\Borrow.csproj.AssemblyReference.cache
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\obj\Debug\netcoreapp3.1\MainWindow.g.cs
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\obj\Debug\netcoreapp3.1\App.g.cs
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\obj\Debug\netcoreapp3.1\Borrow_MarkupCompile.cache
@@ -24,3 +23,4 @@ C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\runtimes\win-x86\native\sni.dll
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Harikrishna\Documents\GVSU-CIS641-Lakers\src\Source_Code\Borrow\Borrow\obj\Debug\netcoreapp3.1\Borrow.csproj.CopyComplete
