@@ -93,12 +93,10 @@ INSERT INTO Books (Title, Author_Names, Reference_Only, Copies_Available) values
 DROP TABLE IF EXISTS dbo.Issued_Books
 CREATE TABLE Issued_Books (
     Issue_ID int IDENTITY(100000,1) PRIMARY KEY,
-    Librarian_ID int NOT NULL,
     Customer_ID int NOT NULL,
 	Book_ID int NOT NULL,
 	Issue_Date date NOT NULL,
 	Due_Date date NOT NULL,
-	FOREIGN KEY (Librarian_ID) REFERENCES Librarian(Librarian_ID),
 	FOREIGN KEY (Customer_ID) REFERENCES Customer(Customer_ID),
 	FOREIGN KEY (Book_ID) REFERENCES Books(Book_ID)
 );

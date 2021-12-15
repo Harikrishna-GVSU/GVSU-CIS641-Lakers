@@ -60,8 +60,7 @@
                   AutoGenerateColumns="False" 
                   CanUserResizeColumns="True" 
                   CanUserSortColumns="True" 
-                  Margin="41,130,41,269" 
-                  RowEditEnding="dgBook_RowBookEnding">
+                  Margin="41,130,41,269" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Book ID" Binding="{Binding Book_ID}" />
                 <DataGridTextColumn Header="Book Name" Binding="{Binding Book_Name}" Width="300"/>

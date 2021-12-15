@@ -157,14 +157,14 @@ namespace Borrow
             if (Database.IssueBooks(booksCollection, customer))
             {
                 errorMessageBarLabel.Content = "";
-                infoMessageBarLabel.Content = "Succesfully issued books";
+                infoMessageBarLabel.Content = "Succesfully issued books to "+customer.Customer_Name;
 
                 //SendEmailToCustomer();
             }
             else
             {
                 infoMessageBarLabel.Content = "";
-                errorMessageBarLabel.Content = "Failed to issue books";
+                errorMessageBarLabel.Content = "Failed to issue books to "+customer.Customer_Name;
             }
         }
 
@@ -260,7 +260,7 @@ namespace Borrow
                         booksCollection.Remove(emp);
                         count++;
                     }
-                    MessageBox.Show(count + "Row's Deleted");
+                    MessageBox.Show(count + "Book's Deleted");
                 }
             }
             catch (Exception ex)
@@ -271,24 +271,26 @@ namespace Borrow
 
         private void SendEmailToCustomer()
         {
-            MailMessage mailMessage = new MailMessage();
-            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
-            mailMessage.From = new MailAddress("library.grandrapids@gmail.com");
-            mailMessage.To.Add(new MailAddress(customer.Customer_Email));
-            mailMessage.Subject = "Information of Borrowed books from GR Library";
-            mailMessage.IsBodyHtml = true;
-            mailMessage.Body = GetHTMLMailString();
-            smtpClient.Port = 587;
-            smtpClient.EnableSsl = true;
-            smtpClient.UseDefaultCredentials = true ;
-            smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network; ;
             try
             {
-                smtpClient.Send(mailMessage);
+                MailMessage message = new MailMessage();
+                SmtpClient smtp = new SmtpClient();
+                message.From = new MailAddress("library.grandrapids@gmail.com");
+                message.To.Add(new MailAddress(customer.Customer_Email));
+                message.Subject = "Information of books borrowed by "+customer.Customer_Name;
+                message.IsBodyHtml = true; //to make message body as html  
+                message.Body = GetHTMLMailString();
+                smtp.Port = 587;
+                smtp.Host = "smtp.gmail.com"; //for gmail host  
+                smtp.EnableSsl = true;
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential("library.grandrapids@gmail.com", "Kittu@190797");
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Send(message);
             }
             catch (Exception ex)
             {
-                return;
+                MessageBox.Show("Sending email failed \n"+"Exception "+ex.Message);
             }
         }
 
@@ -296,7 +298,8 @@ namespace Borrow
         {
             try
             {
-                string messageBody = "<font>The following are the records: </font><br><br>";
+                string messageBody = "<font>Hello "+customer.Customer_Name+",</font><br/><br/>";
+                messageBody = messageBody + "Following are the books borrowed by you at Grand Rapids Library.<br/><br/>";
                 string htmlTableStart = "<table style=\"border-collapse:collapse; text-align:center;\" >";
                 string htmlTableEnd = "</table>";
                 string htmlHeaderRowStart = "<tr style=\"background-color:#6FA1D2; color:#ffffff;\">";
@@ -310,7 +313,7 @@ namespace Borrow
                 messageBody += htmlTdStart + "Book Name" + htmlTdEnd;
                 messageBody += htmlTdStart + "Author(s) " + htmlTdEnd;
                 messageBody += htmlTdStart + "Issue Date" + htmlTdEnd;
-                messageBody += htmlTdStart + "Return Date" + htmlTdEnd;
+                messageBody += htmlTdStart + "Due Date" + htmlTdEnd;
                 messageBody += htmlHeaderRowEnd; 
                 foreach(Book book in booksCollection)
                 {
@@ -322,6 +325,7 @@ namespace Borrow
                     messageBody = messageBody + htmlTrEnd;
                 }
                 messageBody = messageBody + htmlTableEnd;
+                messageBody = messageBody + "<br/><br/>Best Regards,<br/>Admin,<br/>Grand Rapids Library.";
                 return messageBody;
             }
             catch (Exception ex)

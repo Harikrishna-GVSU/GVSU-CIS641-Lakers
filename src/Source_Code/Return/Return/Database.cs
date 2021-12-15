@@ -59,6 +59,7 @@ namespace Borrow
                 DataTable dataTable = new DataTable();
                 String queryString = @"Select i.Issue_ID,b.Book_ID,Title,Issue_Date, Due_Date from Books b, Issued_Books i";
                 queryString = queryString + " where i.Book_ID = b.Book_ID and i.Customer_ID = " + customerID;
+                queryString = queryString + @" and i.Issue_ID not in (select Issue_ID from Returned_Books)";
                 using (var conn = new SqlConnection(connectionString))
                 {
                     using (var cmd = new SqlCommand(queryString, conn))

@@ -90,7 +90,7 @@ namespace Borrow
                 UpdateBooksTable(books, customer);
                 UpdateIssuedBooksTable(books, customer);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 return false;
             }
