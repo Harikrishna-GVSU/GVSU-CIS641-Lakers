@@ -199,7 +199,7 @@ namespace Return
                 errorMessageBarLabel.Content = "";
                 infoMessageBarLabel.Content = "Succesfully returned books borrowed by "+customer.Customer_Name;
 
-                //SendEmailToCustomer();
+                SendEmailToCustomer();
                 DeleteBooks();
             }
             else

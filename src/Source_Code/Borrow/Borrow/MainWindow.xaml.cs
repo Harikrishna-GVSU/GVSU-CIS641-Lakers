@@ -23,7 +23,7 @@ namespace Borrow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public class Book : INotifyPropertyChanged
         {
@@ -76,21 +76,38 @@ namespace Borrow
                 Customer_Email = cust_email;
             }
         }
-
-        public ObservableCollection<Book> booksCollection = new ObservableCollection<Book>();
+        private ObservableCollection<Book> booksCollection;
+        public ObservableCollection<Book> BooksCollection
+        {
+            set
+            {
+                booksCollection = value;
+                RaisePropertyChanged("BooksCollection");
+            }
+            get
+            {
+                return booksCollection;
+            }
+        }
         List<int> selectedBookIDs;
+        List<int> clearBookIDs;
         Book currentBook;
         Customer customer;
         public int BookID;
         public string BookName;
         public string AuthorNames;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public MainWindow()
         {
             InitializeComponent();
             MakeFieldsInvisible();
-            this.DataContext = booksCollection;
-            dgBookCollection.ItemsSource = booksCollection;
+            BooksCollection = new ObservableCollection<Book>();
+            this.DataContext = this;
+            dgBookCollection.ItemsSource = BooksCollection;
             selectedBookIDs = new List<int>();
+            clearBookIDs = new List<int>();
         }
 
         private void BtnSearch_Click(object sender, RoutedEventArgs e)
@@ -128,10 +145,35 @@ namespace Borrow
                 errorMessageBarLabel.Content = "Please enter a Book ID to Search";
             }
         }
-
-        private void BtnAddBook_Click(object sender, RoutedEventArgs e)
+        private void BtnClear_Click(object sender, RoutedEventArgs e)
         {
             foreach (Book book in booksCollection)
+            {
+                clearBookIDs.Add(book.Book_ID);
+            }
+            foreach (int bookID in clearBookIDs)
+            {
+                Book emp = (from ep in BooksCollection
+                            where ep.Book_ID == bookID
+                            select ep).First();
+                BooksCollection.Remove(emp);
+            }
+            clearBookIDs = new List<int>();
+            checkoutButton.Visibility = Visibility.Hidden;
+            dgBookCollection.Visibility = Visibility.Hidden;
+            deleteBooksButton.Visibility = Visibility.Hidden;
+            customerIDLabel.Visibility = Visibility.Hidden;
+            customerIDTextBok.Visibility = Visibility.Hidden;
+            customerSearchButton.Visibility = Visibility.Hidden;
+            customerNameLabel.Visibility = Visibility.Hidden;
+            customerNameTextBox.Visibility = Visibility.Hidden;
+            clearButton.Visibility = Visibility.Hidden;
+            errorMessageBarLabel.Content = "";
+            infoMessageBarLabel.Content = "Cart cleared successfully";
+        }
+        private void BtnAddBook_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Book book in BooksCollection)
             {
                 if (book.Book_ID == currentBook.Book_ID)
                 {
@@ -141,7 +183,7 @@ namespace Borrow
                 }
             }
 
-            booksCollection.Add(currentBook);
+            BooksCollection.Add(currentBook);
             errorMessageBarLabel.Content = "";
             infoMessageBarLabel.Content = "Book added to cart successfully";
             checkoutButton.IsEnabled = true;
@@ -150,21 +192,22 @@ namespace Borrow
             customerIDLabel.Visibility = Visibility.Visible;
             customerIDTextBok.Visibility = Visibility.Visible;
             customerSearchButton.Visibility = Visibility.Visible;
+            clearButton.Visibility = Visibility.Visible;
         }
 
         private void BtnCheckout_Click(object sender, RoutedEventArgs e)
         {
-            if (Database.IssueBooks(booksCollection, customer))
+            if (Database.IssueBooks(BooksCollection, customer))
             {
                 errorMessageBarLabel.Content = "";
-                infoMessageBarLabel.Content = "Succesfully issued books to "+customer.Customer_Name;
+                infoMessageBarLabel.Content = "Succesfully issued books to " + customer.Customer_Name;
 
-                //SendEmailToCustomer();
+                SendEmailToCustomer();
             }
             else
             {
                 infoMessageBarLabel.Content = "";
-                errorMessageBarLabel.Content = "Failed to issue books to "+customer.Customer_Name;
+                errorMessageBarLabel.Content = "Failed to issue books to " + customer.Customer_Name;
             }
         }
 
@@ -173,7 +216,7 @@ namespace Borrow
             if (customerIDTextBok.Text != "")
             {
                 customer = Database.GetCustomerDetails(customerIDTextBok.Text);
-                if(customer!=null)
+                if (customer != null)
                 {
                     errorMessageBarLabel.Content = "";
                     customerNameTextBox.Text = customer.Customer_Name;
@@ -222,6 +265,7 @@ namespace Borrow
             customerSearchButton.Visibility = Visibility.Hidden;
             customerNameLabel.Visibility = Visibility.Hidden;
             customerNameTextBox.Visibility = Visibility.Hidden;
+            clearButton.Visibility = Visibility.Hidden;
         }
 
         private void ClearContentOfFields()
@@ -254,13 +298,14 @@ namespace Borrow
                     int count = 0;
                     foreach (int bookID in selectedBookIDs)
                     {
-                        Book emp = (from ep in booksCollection
+                        Book emp = (from ep in BooksCollection
                                     where ep.Book_ID == bookID
                                     select ep).First();
-                        booksCollection.Remove(emp);
+                        BooksCollection.Remove(emp);
                         count++;
                     }
                     MessageBox.Show(count + "Book's Deleted");
+                    selectedBookIDs = new List<int>();
                 }
             }
             catch (Exception ex)
@@ -277,7 +322,7 @@ namespace Borrow
                 SmtpClient smtp = new SmtpClient();
                 message.From = new MailAddress("library.grandrapids@gmail.com");
                 message.To.Add(new MailAddress(customer.Customer_Email));
-                message.Subject = "Information of books borrowed by "+customer.Customer_Name;
+                message.Subject = "Information of books borrowed by " + customer.Customer_Name;
                 message.IsBodyHtml = true; //to make message body as html  
                 message.Body = GetHTMLMailString();
                 smtp.Port = 587;
@@ -290,7 +335,7 @@ namespace Borrow
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Sending email failed \n"+"Exception "+ex.Message);
+                MessageBox.Show("Sending email failed \n" + "Exception " + ex.Message);
             }
         }
 
@@ -298,7 +343,7 @@ namespace Borrow
         {
             try
             {
-                string messageBody = "<font>Hello "+customer.Customer_Name+",</font><br/><br/>";
+                string messageBody = "<font>Hello " + customer.Customer_Name + ",</font><br/><br/>";
                 messageBody = messageBody + "Following are the books borrowed by you at Grand Rapids Library.<br/><br/>";
                 string htmlTableStart = "<table style=\"border-collapse:collapse; text-align:center;\" >";
                 string htmlTableEnd = "</table>";
@@ -314,14 +359,14 @@ namespace Borrow
                 messageBody += htmlTdStart + "Author(s) " + htmlTdEnd;
                 messageBody += htmlTdStart + "Issue Date" + htmlTdEnd;
                 messageBody += htmlTdStart + "Due Date" + htmlTdEnd;
-                messageBody += htmlHeaderRowEnd; 
-                foreach(Book book in booksCollection)
+                messageBody += htmlHeaderRowEnd;
+                foreach (Book book in BooksCollection)
                 {
                     messageBody = messageBody + htmlTrStart;
                     messageBody = messageBody + htmlTdStart + book.Book_Name + htmlTdEnd;
-                    messageBody = messageBody + htmlTdStart + book.Author_Names + htmlTdEnd; 
-                    messageBody = messageBody + htmlTdStart + DateTime.Now + htmlTdEnd; 
-                    messageBody = messageBody + htmlTdStart + DateTime.Now.AddDays(15) + htmlTdEnd; 
+                    messageBody = messageBody + htmlTdStart + book.Author_Names + htmlTdEnd;
+                    messageBody = messageBody + htmlTdStart + DateTime.Now + htmlTdEnd;
+                    messageBody = messageBody + htmlTdStart + DateTime.Now.AddDays(15) + htmlTdEnd;
                     messageBody = messageBody + htmlTrEnd;
                 }
                 messageBody = messageBody + htmlTableEnd;
@@ -332,6 +377,12 @@ namespace Borrow
             {
                 return null;
             }
+        }
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
