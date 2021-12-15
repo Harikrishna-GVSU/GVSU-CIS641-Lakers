@@ -15,7 +15,7 @@ Our project is the "Library Management System." This system can be used in libra
 ## Run Instructions
 * An Library Management System.exe file will be delivered to the end-user.
 * User needs to install SQL server.
-* User needs to install SSMS and run the DB scripts provided [here] (https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/blob/master/src/DB_Scripts/DDL_And_DML_For_Library_Database.sql)
+* User needs to install SSMS and run the DB scripts provided [here](https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/blob/master/src/DB_Scripts/DDL_And_DML_For_Library_Database.sql)
 * User needs to double click the.exe file in order to run the application.
 * The application will have features like borrowing a book, returning a book, and searching for a book.
 * The UI will be user-friendly and users can easily use it by just seeing the interface.
