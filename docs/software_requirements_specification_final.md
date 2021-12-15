@@ -139,7 +139,11 @@ This section identifies the relation between the requirements and the artifacts 
 | Acivity3 | Search for Book | FR21, FR22, NFR3 |
 # Software Artifacts
 This section provides the links to software artifacts. Software artifacts are nothing but the documentation done throughout the development of a software which can be retrieved on demand when stored in a repository.
+
 [Click here](https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/tree/master/artifacts/Functional-Models) for functional models.
+
 [Click here](https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/tree/master/artifacts/HCI) for human computer interaction.
+
 [Click here](https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/tree/master/src/Source_Code) for source code.
+
 [Click here](https://github.com/Harikrishna-GVSU/GVSU-CIS641-Lakers/tree/master/src/DB_Scripts) for database scripts.
